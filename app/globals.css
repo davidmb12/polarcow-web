@@ -31,3 +31,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.background-image{
+  background-image: url('/Logo.png');
+  background-size: 25%;
+}
