@@ -27,13 +27,14 @@ const HomePage = () => {
                     <motion.div
                         initial={{ opacity: 0, marginLeft: "-20rem" }}
                         whileInView={{ opacity: 1, marginLeft: "0" }}
-                        className='text-white text-6xl font-thin p-11'
+                        className='text-white font-thin p-9'
                     >
-                        <h1>Projects</h1>
-                        <BentoGrid items={items} itemsPerPage={1} renderItem={(item)=>(
-                            <div className='text-center text-lg font-medium text-gray-500'>
+                        <h1 className='text-5xl'>Projects</h1>
+                        <BentoGrid items={items} itemsPerPage={9} renderItem={(item)=>(
+                            <div className='text-center'>
                                 {item}
                             </div>
+                            
                         )}></BentoGrid>
                     </motion.div>
                 </div>
