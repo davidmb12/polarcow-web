@@ -2,10 +2,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
-import Grid from './components/grid'
 import BentoGrid from './components/bentoGrid'
 import ItemsList from './components/items/itemsList'
-import Item from './components/items/item'
+import Item from './components/items/gridItem'
 
 const HomePage = () => {
     const items =ItemsList;
@@ -22,23 +21,19 @@ const HomePage = () => {
             
 
 
-            <div className='bg-black w-full h-screen'>
-                <div className='flex flex-col align-text-top text-center h-full'>
                     <motion.div
-                        initial={{ opacity: 0, marginLeft: "-20rem" }}
+                        initial={{ opacity: 0, marginLeft: "-40rem" }}
                         whileInView={{ opacity: 1, marginLeft: "0" }}
                         className='text-white font-thin p-9'
                     >
                         <h1 className='text-5xl'>Projects</h1>
-                        <BentoGrid items={items} itemsPerPage={9} renderItem={(item)=>(
-                            <div className='text-center'>
+                        <BentoGrid items={items} itemsPerPage={3} renderItem={(item)=>(
+                            <>
                                 {item}
-                            </div>
-                            
+                            </>
+
                         )}></BentoGrid>
                     </motion.div>
-                </div>
-            </div>
 
         </>
     )

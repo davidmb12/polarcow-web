@@ -22,10 +22,10 @@ const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) =
         if(currentPage > 0) setCurrentPage(currentPage-1);
     }
     return (
-        <div className='flex flex-col items-center p-20'>
+        <div className='flex flex-col items-center '>
             <div className='grid grid-cols-6 gap-4 p-4 w-full' style={{gridAutoRows:"150px"}}>
                 {paginatedItems.map((item,index)=>(
-                    <div key={index} className='bg-gray-200 rounded-lg p-4 shadow-md flex items-center justify-center' style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}}>
+                    <div key={index} className='shadow-md rounded-lg bg-white flex items-center justify-center' style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}}>
                         {renderItem(item.data)}
                     </div>
                 ))}
