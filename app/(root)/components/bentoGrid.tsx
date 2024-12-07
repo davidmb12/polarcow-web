@@ -26,9 +26,9 @@ const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) =
     }
     return (
         <div className=''>
-            <div className='grid grid-cols-6 gap-4 w-full' style={{gridAutoRows:"150px"}}>
+            <div className='grid grid-cols-6 gap-4 w-full' style={{gridAutoRows:"200px"}}>
                 {paginatedItems.map((item,index)=>(
-                    <motion.div key={index} layoutId={`item-${index}`} onMouseEnter={()=>setHoveredItem(index)} onMouseLeave={()=>setHoveredItem(null)}  style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}} >
+                    <motion.div key={index} onMouseEnter={()=>setHoveredItem(index)} onMouseLeave={()=>setHoveredItem(null)}  style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}} >
                         {renderItem(item.data)}
                     </motion.div>
                 ))}
