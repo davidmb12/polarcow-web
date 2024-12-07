@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 type GridItem<T> ={
     data:T;
@@ -11,10 +12,12 @@ type BentoGridProps<T> = {
 };
 const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) => {
     const [currentPage,setCurrentPage] = useState(0);
-
     const startIndex = currentPage *itemsPerPage;
     const paginatedItems = items.slice(startIndex,startIndex+itemsPerPage);
     const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    const [hoveredItem,setHoveredItem] = useState<number | null>(null);
+    
     const handleNext = ()=>{
         if(currentPage < totalPages - 1) setCurrentPage(currentPage+1);
     }
@@ -22,16 +25,16 @@ const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) =
         if(currentPage > 0) setCurrentPage(currentPage-1);
     }
     return (
-        <div className='flex flex-col items-center '>
-            <div className='grid grid-cols-6 gap-4 p-4 w-full' style={{gridAutoRows:"150px"}}>
+        <div className=''>
+            <div className='grid grid-cols-6 gap-4 w-full' style={{gridAutoRows:"150px"}}>
                 {paginatedItems.map((item,index)=>(
-                    <div key={index} className='shadow-md rounded-lg bg-white flex items-center justify-center' style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}}>
+                    <motion.div key={index} layoutId={`item-${index}`} onMouseEnter={()=>setHoveredItem(index)} onMouseLeave={()=>setHoveredItem(null)}  style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}} >
                         {renderItem(item.data)}
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             {/*Pagination controls*/}
-            <div className='flex items-center gap-4 mt-4'>
+            <div className='flex items-center gap-4 mt-20'>
                 <button onClick={handlePrev} disabled={currentPage===0} className={`px-4 py-2 rounded-md ${currentPage===0? "bg-gray-300 text-gray-500 cursor-not-allowed":"bg-blue-500 text-white hover:bg-blue-600"}`}>
                     Previous
                 </button>
