@@ -6,11 +6,12 @@ type ItemProps ={
   imageSrc:string;
   thumbnailStyles:string;
   descriptionStyles:string;
+  generalStyles:string;
   
 }
-const Item:React.FC<ItemProps> = ({title,info,imageSrc=null,thumbnailStyles='',descriptionStyles=''}) => {
+const Item:React.FC<ItemProps> = ({title,info,imageSrc=null,thumbnailStyles='',descriptionStyles='',generalStyles=''}) => {
   return (
-    <div className='w-full h-full'>
+    <div className={`${generalStyles} w-full h-full`}>
       <div className={`${thumbnailStyles} bg-cover bg-center overflow-hidden h-[80%]  mt-4 rounded-t-lg p-8 `} style={{ backgroundImage: `url(${imageSrc})` }}>
         {title}
       </div>
