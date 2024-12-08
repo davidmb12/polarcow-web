@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainNav } from '@/components/main-nav';
+import { MainNav } from '@/components/navigation/main-nav';
 import { redirect } from 'next/navigation';
 
 const Navbar = async () => {

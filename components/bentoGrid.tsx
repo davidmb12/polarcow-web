@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import NavigationGridBar from './navigation/navigationGridBar';
 type GridItem<T> ={
     data:T;
     rowSpan?:number;
@@ -24,9 +25,12 @@ const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) =
     const handlePrev=() =>{
         if(currentPage > 0) setCurrentPage(currentPage-1);
     }
+    const handleChangePage = (page:number)=>{
+        setCurrentPage(page);
+    }
     return (
         <div className=''>
-            <div className='grid grid-cols-6 gap-4 w-full' style={{gridAutoRows:"200px"}}>
+            <div className='grid lg:grid-cols-3  gap-4 w-full' style={{gridAutoRows:"200px"}}>
                 {paginatedItems.map((item,index)=>(
                     <motion.div whileHover={{scale:1.01}} whileTap={{scale:0.9}}key={index} onMouseEnter={()=>setHoveredItem(index)} onMouseLeave={()=>setHoveredItem(null)}  style={{gridColumn:`span ${item.colSpan ||1}/ span ${item.colSpan ||1}`, gridRow:`span ${item.rowSpan || 1} / span ${item.rowSpan || 1}`}} >
                         {renderItem(item.data)}
@@ -34,7 +38,8 @@ const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) =
                 ))}
             </div>
             {/*Pagination controls*/}
-            <div className='flex items-center gap-4 mt-20'>
+            <NavigationGridBar pagesNumber={totalPages} currentPage={currentPage} changePage={handleChangePage}></NavigationGridBar>
+            {/* <div className='flex items-center gap-4 mt-20'>
                 <button onClick={handlePrev} disabled={currentPage===0} className={`px-4 py-2 rounded-md ${currentPage===0? "bg-gray-300 text-gray-500 cursor-not-allowed":"bg-blue-500 text-white hover:bg-blue-600"}`}>
                     Previous
                 </button>
@@ -44,7 +49,7 @@ const BentoGrid = <T,>({ items, itemsPerPage, renderItem }: BentoGridProps<T>) =
                 <button onClick={handleNext} className={`px-4 py-2 rounded-md ${currentPage === totalPages-1 ? "bg-gray-300 text-gray-500 cursor-not-allowed":"bg-blue-500 text-white hover:bg-blue-600"}`}>
                     Next
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 }

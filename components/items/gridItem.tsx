@@ -11,11 +11,11 @@ type ItemProps ={
 }
 const Item:React.FC<ItemProps> = ({title,info,imageSrc=null,thumbnailStyles='',descriptionStyles='',generalStyles=''}) => {
   return (
-    <div className={`${generalStyles} w-full h-full`}>
-      <div className={`${thumbnailStyles} bg-cover bg-center overflow-hidden h-[80%]  mt-4 rounded-t-lg p-8 `} style={{ backgroundImage: `url(${imageSrc})` }}>
+    <div className={`${generalStyles} flex flex-col w-full h-full overflow-hidden rounded-lg mt-6`}>
+      <div className={`${thumbnailStyles} bg-contain bg-no-repeat bg-center overflow-hidden flex-grow p-8 `} style={{ backgroundImage: `url(${imageSrc})` }}>
         {title}
       </div>
-      <div className={`${descriptionStyles} p-8 rounded-b-lg`}>
+      <div className={`${descriptionStyles} p-8  flex-shrink`}>
         {info}
       </div>
     </div>
