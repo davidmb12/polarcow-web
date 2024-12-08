@@ -12,7 +12,7 @@ const NavigationGridBar: React.FC<NavigationGridBarProps> = ({ pagesNumber, curr
       <div className='w-9 flex justify-around'>
         {Array.from({ length: pagesNumber }, (_, i) =>
         (
-          <motion.div whileHover={{scale:1.1}}>
+          <motion.div whileHover={{scale:1.1}} key={i}>
             <button className={`${currentPage == i ? 'bg-white':'bg-gray-400'} w-3 h-3 rounded-full`} style={{scale:currentPage ===i?1:0.5}}key={i} onClick={() => changePage(i)}></button>
  
           </motion.div>
